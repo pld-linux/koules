@@ -1,0 +1,38 @@
+--- koules1.4/xlib/shmbitmap.c.orig	Wed Mar  4 19:59:19 1998
++++ koules1.4/xlib/shmbitmap.c	Thu Jan 24 20:00:39 2002
+@@ -242,13 +242,12 @@
+ muldiv64 (int CONST m1, int CONST m2, int CONST d)
+ {
+ /* int32 * int32 -> int64 / int32 -> int32 */
+-  int             result;
++  int             result,dummy;
+   __asm__ (
+ 	    "imull %%edx\n\t"
+-	    "idivl %3\n\t"
+-:	    "=a" (result)	/* out */
++	    "idivl %4\n\t"
++:	    "=a" (result), "=d" (dummy)	/* out */
+ :	    "a" (m1), "d" (m2), "g" (d)		/* in */
+-:	    "ax", "dx"		/* mod */
+     );
+   return result;
+ }
+--- koules1.4/font.c.orig	Wed Mar  4 19:59:19 1998
++++ koules1.4/font.c	Thu Jan 24 21:00:36 2002
+@@ -52,13 +52,12 @@
+ muldiv64 (int CONST m1, int CONST m2, int CONST d)
+ {
+ /* int32 * int32 -> int64 / int32 -> int32 */
+-  int             result;
++  int             result,dummy;
+   __asm__ (
+ 	    "imull %%edx\n\t"
+-	    "idivl %3\n\t"
+-:	    "=a" (result)	/* out */
++	    "idivl %4\n\t"
++:	    "=a" (result), "=d" (dummy)	/* out */
+ :	    "a" (m1), "d" (m2), "g" (d)		/* in */
+-:	    "ax", "dx"		/* mod */
+     );
+   return result;
+ }

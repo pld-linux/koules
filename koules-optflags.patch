@@ -1,0 +1,102 @@
+diff -Nur koules1.4.orig/Iconfig koules1.4/Iconfig
+--- koules1.4.orig/Iconfig	Thu Jan 24 20:26:30 2002
++++ koules1.4/Iconfig	Thu Jan 24 20:29:12 2002
+@@ -51,7 +51,7 @@
+ SUBDIRS = xlib
+ 
+ #if defined(LinuxArchitecture)
+-    SYSDEFS = -Wall -fomit-frame-pointer -O6  -ffast-math
++    SYSDEFS = -Wall -ffast-math
+ #if !defined(NAS_SOUND)&&!defined(RSOUND)
+ #define SOUND
+     SOUNDSERVER = koules.sndsrv.linux
+diff -Nur koules1.4.orig/Imakefile koules1.4/Imakefile
+--- koules1.4.orig/Imakefile	Wed Mar  4 19:59:19 1998
++++ koules1.4/Imakefile	Thu Jan 24 20:30:22 2002
+@@ -27,7 +27,7 @@
+ #ifndef SOUND
+ #ifndef NAS_SOUND
+ #ifndef RSOUND
+-DEFINES = -DONLYANSI $(JOYSTICK1) $(NET) $(MITSHM1) $(HAVEUSLEEP1) $(SYSDEFS) $(JOYSTICK) -Ixlib\
++DEFINES = $(JOYSTICK1) $(NET) $(MITSHM1) $(HAVEUSLEEP1) $(SYSDEFS) $(JOYSTICK) -Ixlib\
+ 	$(NAMEDEF) $(ASMDEF)
+ #else
+ INSTALLSOUND = True
+@@ -36,7 +36,7 @@
+ 
+ SOUNDOBJS = rsound.o
+ 
+-DEFINES = -DONLYANSI -DRSOUND $(JOYSTICK1) $(NET) $(MITSHM1) $(HAVEUSLEEP1) $(SYSDEFS) $(JOYSTICK) -Ixlib\
++DEFINES = -DRSOUND $(JOYSTICK1) $(NET) $(MITSHM1) $(HAVEUSLEEP1) $(SYSDEFS) $(JOYSTICK) -Ixlib\
+ 	$(NAMEDEF) $(ASMDEF)\
+ 	-DSOUNDDIR=\"$(SOUNDDIR)\" 
+ #endif
+@@ -47,14 +47,14 @@
+ 
+ SOUNDOBJS = nas_sound.o
+ 
+-DEFINES = -DONLYANSI -DNAS_SOUND $(JOYSTICK1) $(NET) $(MITSHM1) $(HAVEUSLEEP1) $(SYSDEFS) $(JOYSTICK) -Ixlib\
++DEFINES = -DNAS_SOUND $(JOYSTICK1) $(NET) $(MITSHM1) $(HAVEUSLEEP1) $(SYSDEFS) $(JOYSTICK) -Ixlib\
+ 	$(NAMEDEF) $(ASMDEF)\
+ 	-DSOUNDDIR=\"$(SOUNDDIR)\" 
+ #endif 
+ #else
+ INSTALLSOUND = True
+ 
+-DEFINES = -DONLYANSI -DSOUND $(JOYSTICK1) $(NET) $(MITSHM1) $(HAVEUSLEEP1) $(SYSDEFS) $(JOYSTICK) -Ixlib\
++DEFINES = -DSOUND $(JOYSTICK1) $(NET) $(MITSHM1) $(HAVEUSLEEP1) $(SYSDEFS) $(JOYSTICK) -Ixlib\
+ 	$(NAMEDEF) $(ASMDEF)\
+ 	-DSOUNDSERVER=\"$(SOUNDDIR)/$(SOUNDSERVER)\" \
+ 	-DSOUNDDIR=\"$(SOUNDDIR)\" \
+diff -Nur koules1.4.orig/Makefile.svgalib koules1.4/Makefile.svgalib
+--- koules1.4.orig/Makefile.svgalib	Thu Jan 24 20:26:30 2002
++++ koules1.4/Makefile.svgalib	Thu Jan 24 20:29:50 2002
+@@ -25,8 +25,8 @@
+ INSTALL = install
+ 
+ CC	 = gcc
+-OPTIMIZE = -Isvgalib -fomit-frame-pointer -O3 -ffast-math -s -Dlinux -Wall -DHAVEUSLEEP
+-OPTIMIZE1 = -I svgalib -fomit-frame-pointer -O6  -ffast-math -funroll-loops -finline-functions   -s -Dlinux -Wall -DHAVEUSLEEP
++OPTIMIZE = -Isvgalib $(OPTFLAGS) -ffast-math -Dlinux -Wall -DHAVEUSLEEP
++OPTIMIZE1 = -I svgalib $(OPTFLAGS) -ffast-math -Dlinux -Wall -DHAVEUSLEEP
+ CFLAGS	 = $(DEFINES) $(ARCH) $(JOYSTICK) -DSOUNDDIR="\"$(SOUNDDIR)\"" $(SOUND) $(MOUSE) $(NET)\
+ 	-DSOUNDSERVER=\"$(SOUNDDIR)/$(SOUNDSERVER)\" \
+ 	-DSOUNDDIR=\"$(SOUNDDIR)\" \
+diff -Nur koules1.4.orig/xlib/Imakefile koules1.4/xlib/Imakefile
+--- koules1.4.orig/xlib/Imakefile	Wed Mar  4 19:59:19 1998
++++ koules1.4/xlib/Imakefile	Thu Jan 24 20:30:45 2002
+@@ -30,7 +30,7 @@
+ #ifndef SOUND
+ #ifndef NAS_SOUND
+ #ifndef RSOUND
+-DEFINES = -DONLYANSI $(JOYSTICK1) $(NET) $(MITSHM1) $(HAVEUSLEEP1) $(SYSDEFS) $(JOYSTICK) -I.\
++DEFINES = $(JOYSTICK1) $(NET) $(MITSHM1) $(HAVEUSLEEP1) $(SYSDEFS) $(JOYSTICK) -I.\
+ 	$(NAMEDEF) $(ASMDEF)
+ #else
+ INSTALLSOUND = True
+@@ -39,7 +39,7 @@
+ 
+ SOUNDOBJS = rsound.o
+ 
+-DEFINES = -DONLYANSI -DRSOUND $(JOYSTICK1) $(NET) $(MITSHM1) $(HAVEUSLEEP1) $(SYSDEFS) $(JOYSTICK) -I.\
++DEFINES = -DRSOUND $(JOYSTICK1) $(NET) $(MITSHM1) $(HAVEUSLEEP1) $(SYSDEFS) $(JOYSTICK) -I.\
+ 	$(NAMEDEF) $(ASMDEF)\
+ 	-DSOUNDDIR=\"$(SOUNDDIR)\" 
+ #endif
+@@ -50,14 +50,14 @@
+ 
+ SOUNDOBJS = nas_sound.o
+ 
+-DEFINES = -DONLYANSI -DNAS_SOUND $(JOYSTICK1) $(NET) $(MITSHM1) $(HAVEUSLEEP1) $(SYSDEFS) $(JOYSTICK) -I.\
++DEFINES = -DNAS_SOUND $(JOYSTICK1) $(NET) $(MITSHM1) $(HAVEUSLEEP1) $(SYSDEFS) $(JOYSTICK) -I.\
+ 	$(NAMEDEF) $(ASMDEF)\
+ 	-DSOUNDDIR=\"$(SOUNDDIR)\" 
+ #endif 
+ #else
+ INSTALLSOUND = True
+ 
+-DEFINES = -DONLYANSI -DSOUND $(JOYSTICK1) $(NET) $(MITSHM1) $(HAVEUSLEEP1) $(SYSDEFS) $(JOYSTICK) -I.\
++DEFINES = -DSOUND $(JOYSTICK1) $(NET) $(MITSHM1) $(HAVEUSLEEP1) $(SYSDEFS) $(JOYSTICK) -I.\
+ 	$(NAMEDEF) $(ASMDEF)\
+ 	-DSOUNDSERVER=\"$(KOULESDIR)/$(SOUNDSERVER)\" \
+ 	-DSOUNDDIR=\"$(SOUNDDIR)\" \

@@ -33,11 +33,8 @@ diff -ur koules1.4.orig/Iconfig koules1.2beta1/Iconfig
 diff -ur koules1.4.orig/Makefile.svgalib koules1.2beta1/Makefile.svgalib
 --- koules1.4.orig/Makefile.svgalib	Sun Apr 21 17:20:09 1996
 +++ koules1.4/Makefile.svgalib	Sun Apr 21 17:22:47 1996
-@@ -1,9 +1,9 @@
- #edit this for your architecture!
- #ARCH=-m386
--#ARCH=-m486
-+ARCH=-m486
+@@ -1,7 +1,7 @@
+ #ARCH=-m486
  #ARCH=-mpentium
  #uncoment following for joystick support
 -#JOYSTICK = -D JOYSTICK	#requires joystick toolkit installed!

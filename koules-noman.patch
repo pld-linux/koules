@@ -1,0 +1,11 @@
+--- koules1.4/Imakefile.orig	Thu Jan 24 20:35:15 2002
++++ koules1.4/Imakefile	Thu Jan 24 20:38:00 2002
+@@ -87,7 +87,7 @@
+ BINDIR = $(KOULESDIR)
+ DESTDIR = /
+ 
+-ComplexProgramTarget(xkoules)
++ComplexProgramTargetNoMan(xkoules)
+ 
+ 
+ #ifdef SOUND

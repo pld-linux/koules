@@ -7,12 +7,22 @@ License:	GPL
 Group:		Applications/Games
 Group(de):	Applikationen/Spiele
 Group(pl):	Aplikacje/Gry
-Source0:	ftp://sunsite.unc.edu/pub/Linux/games/arcade/%{name}%{version}-src.tar.gz
+Source0:	ftp://sunsite.unc.edu/pub/Linux/games/arcade/%{name}/%{name}%{version}-src.tar.gz
 Source1:	%{name}.svga.6.pl
 Patch0:		%{name}-i386.patch
 Patch1:		%{name}-config.patch
-BuildRequires:	svgalib-devel XFree86-devel
+Patch2:		%{name}-asmfix.patch
+Patch3:		%{name}-optflags.patch
+Patch4:		%{name}-noman.patch
+BuildRequires:	XFree86-devel
+%ifarch %{ix86}
+BuildRequires:	svgalib-devel
+%endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_bindir		%{_prefix}/games
+%define		_xbindir	%{_bindir}
+%define		_libdir		%{_prefix}/lib/games
 
 %description
 SVGAlib/X11 action game with multiplayer, network and sound support.
@@ -64,50 +74,61 @@ Pliki d¼wiêkowe dla koules/xkoules.
 
 %prep
 %setup -q -n %{name}%{version}
-%ifarch i386
+%ifarch %{ix86}
 %patch0 -p1
 %else
 %patch1 -p1
 %endif
+%patch2 -p1
+%patch3 -p1
+%patch4 -p1
 
 %build
-%{__make} -f Makefile.svgalib
+%ifarch %{ix86}
+%{__make} -f Makefile.svgalib OPTFLAGS="%{rpmcflags} %{!?debug:-fomit-frame-pointer}"
+%endif
+
 xmkmf -a
 %{__make} -f Makefile clean
-%{__make}
+%{__make} CDEBUGFLAGS="%{rpmcflags} %{!?debug:-fomit-frame-pointer}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__make} -f Makefile.svgalib install
-install -d $RPM_BUILD_ROOT%{_mandir}/pl/man6
-install xkoules $RPM_BUILD_ROOT%{_prefix}/games/xkoules
-install xkoules.6 $RPM_BUILD_ROOT%{_mandir}/man6/xkoules.6
-install koules $RPM_BUILD_ROOT%{_prefix}/games/koules
-install koules.tcl $RPM_BUILD_ROOT%{_prefix}/games/koules.tcl
-install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/pl/man6/koules.svga.6
+install -d $RPM_BUILD_ROOT{%{_mandir}{,/pl}/man6,%{_bindir},%{_xbindir},%{_libdir}/koules}
 
-gzip -9nf ANNOUNCE BUGS COMPILE.OS2 Card ChangeLog INSTALLATION Koules.FAQ README TODO
+%ifarch %{ix86}
+install koules.svga $RPM_BUILD_ROOT%{_bindir}
+install koules.svga.6 $RPM_BUILD_ROOT%{_mandir}/man6
+install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/pl/man6/koules.svga.6
+%endif
+
+install sounds/*.raw $RPM_BUILD_ROOT%{_libdir}/koules
+install xkoules $RPM_BUILD_ROOT%{_xbindir}/xkoules
+install xkoules.6 $RPM_BUILD_ROOT%{_mandir}/man6/xkoules.6
+install koules $RPM_BUILD_ROOT%{_xbindir}/koules
+install koules.tcl $RPM_BUILD_ROOT%{_xbindir}/koules.tcl
+
+gzip -9nf ANNOUNCE BUGS Card ChangeLog Koules.FAQ README TODO
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%ifarch %{ix86}
 %files svga
 %defattr(644,root,root,755)
-%doc *.gz *.xpm
-%{_prefix}/games/koules.svga
-%{_prefix}/games/koules
-%{_prefix}/games/koules.tcl
-%{_mandir}/man6/koules.svga.6
-%lang(pl) %{_mandir}/pl/man6/koules.svga.6
+%attr(755,root,root) %{_bindir}/koules.svga
+%attr(755,root,root) %{_bindir}/koules
+%{_mandir}/man6/koules.svga.6*
+%lang(pl) %{_mandir}/pl/man6/koules.svga.6*
+%endif
 
 %files x11
 %defattr(644,root,root,755)
 %doc *.gz *.xpm
-%{_prefix}/games/xkoules
-%{_prefix}/games/koules
-%{_prefix}/games/koules.tcl
-%{_mandir}/man6/xkoules.6
+%attr(755,root,root) %{_xbindir}/xkoules
+%attr(755,root,root) %{_xbindir}/koules.tcl
+%{_mandir}/man6/xkoules.6*
 
 %files sound
 %defattr(644,root,root,755)
-%{_libdir}/games/koules
+%{_libdir}/koules
