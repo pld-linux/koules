@@ -1,9 +1,7 @@
 #
+# Conditional build:
 %bcond_without	svga	# without SVGAlib version
 #
-%ifnarch %{ix86} alpha
-%undefine	with_svga
-%endif
 Summary:	SVGAlib/X11 action game with multiplayer, network and sound support
 Summary(pl):	Gra pod SVGAlib i X11 dla wielu graczy
 Name:		koules
