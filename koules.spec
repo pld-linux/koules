@@ -1,31 +1,55 @@
 %package svga
-Description:	SVGAlib action game with multiplayer, network and sound support
 Summary:	SVGAlib action game with multiplayer, network and sound support
+Summary(pl):	Gra pod SVGAlib dla wielu graczy
 Name:		koules
 Version:	1.4
 Release:	1
+License:	GPL
+Group:		Applications/Games
+Group(de):	Applikationen/Spiele
+Group(pl):	Aplikacje/Gry
 Icon:		koules.gif
-Copyright:	GPL
-Group:		Games
-Source:		sunsite.unc.edu:/pub/Linux/games/video/koules/koules1.4-src.tar.gz
-Patch0:		koules1.4-i386.patch
-Patch1:		koules1.4-config.patch
+Source0:	ftp://sunsite.unc.edu/pub/Linux/games/arcade/%{name}%{version}-src.tar.gz
+Patch0:		%{name}1.4-i386.patch
+Patch1:		%{name}1.4-config.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%description svga
+SVGAlib action game with multiplayer, network and sound support.
+
+%description svga -l pl
+Gra pod SVGAlib ze wsparciem dla wielu graczy, sieci i d德i瘯u.
+
 %package x11
-Icon:		xkoules.gif
-Description:	X action game with multiplayer, network and sound support
 Summary:	X action game with multiplayer, network and sound support
-Group:		X11/Games
+Summary(pl):	Gra pod X dla wielu graczy
+Group:		X11/Applications/Games
+Group(de):	X11/Applikationen/Spiele
+Group(pl):	X11/Aplikacje/Gry
+Icon:		xkoules.gif
+
+%description x11
+X action game with multiplayer, network and sound support
+
+%description x11 -l pl
+Gra pod X ze wsparciem dla wielu graczy, sieci i d德i瘯u.
 
 %package sound
-Icon:		sound.gif
-Description:	Sound files for koules/xkoules
 Summary:	Sound files for koules/xkoules
-Group:		Games
+Summary(pl):	Pliki d德i瘯owe dla koules/xkoules
+Group:		Applications/Games
+Group(de):	Applikationen/Spiele
+Group(pl):	Aplikacje/Gry
+Icon:		sound.gif
+
+%description sound
+Sound files for koules/xkoules.
+
+%description sound -l pl
+Pliki d德i瘯owe dla koules/xkoules.
 
 %prep
-%setup -q -n koules1.4
+%setup -q -n %{name}%{version}
 %ifarch i386
 %patch0 -p1
 %else
@@ -39,28 +63,34 @@ xmkmf -a
 %{__make}
 
 %install
+rm -rf $RPM_BUILD_ROOT
 %{__make} -f Makefile.svgalib install
-install -c -s xkoules /usr/games/xkoules
-install -c xkoules.6 /usr/man/man6/xkoules.6
-install -c koules /usr/games/koules
-install -c koules.tcl /usr/games/koules.tcl
-chmod 4755 /usr/games/koules.svga
-mkdirhier /usr/doc/koules
-cp ANNOUNCE BUGS COMPILE.OS2 COPYING Card ChangeLog INSTALLATION *.xpm Koules.FAQ README TODO /usr/doc/koules
+install -c xkoules $RPM_BUILD_ROOT%{_prefix}/games/xkoules
+install -c xkoules.6 $RPM_BUILD_ROOT%{_mandir}/man6/xkoules.6
+install -c koules $RPM_BUILD_ROOT%{_prefix}/games/koules
+install -c koules.tcl $RPM_BUILD_ROOT%{_prefix}/games/koules.tcl
+
+gzip -9nf ANNOUNCE BUGS COMPILE.OS2 Card ChangeLog INSTALLATION Koules.FAQ README TODO
+
+%clean
+rm -rf $RPM_BUILD_ROOT
 
 %files svga
-/usr/games/koules.svga
-/usr/games/koules
-/usr/games/koules.tcl
-/usr/doc/koules
-/usr/man/man6/koules.svga.6
+%defattr(644,root,root,755)
+%doc *.gz *.xpm
+%{_prefix}/games/koules.svga
+%{_prefix}/games/koules
+%{_prefix}/games/koules.tcl
+%{_mandir}/man6/koules.svga.6
 
 %files x11
-/usr/games/xkoules
-/usr/games/koules
-/usr/games/koules.tcl
-/usr/man/man6/xkoules.6
-/usr/doc/koules
+%defattr(644,root,root,755)
+%doc *.gz *.xpm
+%{_prefix}/games/xkoules
+%{_prefix}/games/koules
+%{_prefix}/games/koules.tcl
+%{_mandir}/man6/xkoules.6
 
 %files sound
-/usr/lib/games/koules
+%defattr(644,root,root,755)
+%{_libdir}/games/koules
