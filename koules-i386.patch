@@ -1,0 +1,88 @@
+diff -ur koules1.4.orig/Iconfig koules1.2beta1/Iconfig
+--- koules1.4.orig/Iconfig	Sun Apr 21 17:20:09 1996
++++ koules1.4/Iconfig	Sun Apr 21 17:58:39 1996
+@@ -18,7 +18,7 @@
+    use my emulation
+    If you are unsure try to leave it commented out. My emulation
+    works on most unixes*/
+-/*#define HAVEUSLEEP*/
++#define HAVEUSLEEP
+ /* for network audio server(supported by most unixes)*/
+ /* It does not sound as well as built in driver ... koules uses too 
+    much sounds*/
+@@ -29,14 +29,14 @@
+ /* linux joystick support
+    Now compiles w/o joystick toolkit. For using joystick support is
+    joystick toolikit required...of course */
+-/*#define JOYSTICK*/
++#define JOYSTICK
+ /*for fast 386 based assembler routines
+   recomended for linux*/
+-/*#define I386ASSEMBLY*/
++#define I386ASSEMBLY
+ /* directories*/
+-KOULESDIR		=/usr/bin/X11
+-SOUNDDIR		=/usr/local/lib/koules
+-MANDIR			=/usr/local/man/man6
++KOULESDIR		=/usr/games
++SOUNDDIR		=/usr/lib/games/koules
++MANDIR			=/usr/man/man6
+ 
+ /*You need some extra libraryes for BSD sockets compatibility?*/
+ /* TOP_INCLUDES =                       /* Sun users with GCC need this */
+diff -ur koules1.4.orig/Makefile.svgalib koules1.2beta1/Makefile.svgalib
+--- koules1.4.orig/Makefile.svgalib	Sun Apr 21 17:20:09 1996
++++ koules1.4/Makefile.svgalib	Sun Apr 21 17:22:47 1996
+@@ -1,9 +1,9 @@
+ #edit this for your architecture!
+ #ARCH=-m386
+-#ARCH=-m486
++ARCH=-m486
+ #ARCH=-mpentium
+ #uncoment following for joystick support
+-#JOYSTICK = -D JOYSTICK	#requires joystick toolkit installed!
++JOYSTICK = -D JOYSTICK	#requires joystick toolkit installed!
+ #uncoment following to enable network support
+ NET = -D NETSUPPORT
+ #uncoment following three lines for linux sound support
+@@ -14,9 +14,9 @@
+ MOUSE = -D MOUSE
+ #don`t add / and spaces at end of path! 
+ #directories
+-SOUNDDIR = /usr/local/lib/koules
+-BINDIR = /usr/local/bin
+-MANDIR = /usr/local/man/man6
++SOUNDDIR = /usr/lib/games/koules
++BINDIR = /usr/games
++MANDIR = /usr/man/man6
+ 
+ SOUNDOBJS = sound.o
+ SOUNDDEV = /dev/dsp
+diff -ur koules1.4.orig/koules koules1.2beta1/koules
+--- koules1.4.orig/koules	Sun Apr 21 17:20:09 1996
++++ koules1.4/koules	Sun Apr 21 17:24:46 1996
+@@ -1,6 +1,6 @@
+ #!/bin/sh
+-KOULESDIR=/usr/local/bin
+-XKOULESDIR=/usr/bin/X11
++KOULESDIR=/usr/games
++XKOULESDIR=/usr/games
+ if [ $TERM != console ]; then
+ if [ $TERM != linux ]; then
+ if [ $DISPLAY != "" ]; then
+diff -ur koules1.4.orig/koules.tcl koules1.2beta1/koules.tcl
+--- koules1.4.orig/koules.tcl	Sun Apr 21 17:20:11 1996
++++ koules1.4/koules.tcl	Sun Apr 21 17:24:25 1996
+@@ -3,9 +3,9 @@
+ # This is simple user (anti)friendly dialog for starting koules
+ # Only reason why I did it is that I wanted to try tcl/tk
+ #files - configure here if paths are differ
+-set xkoules "/usr/bin/X11/xkoules"
+-set koulessvga "/usr/local/bin/koules.svga"
+-set koulessound "/usr/local/lib/koules/creator1.raw"
++set xkoules "/usr/games/xkoules"
++set koulessvga "/usr/games/koules.svga"
++set koulessound "/usr/lib/games/koules/creator1.raw"
+ set config "~/.xkoules.opt"
+ set revision 1.1
+ # Set default
