@@ -1,0 +1,45 @@
+--- koules1.4.orig/rcfiles.c	Thu Mar  5 17:47:05 1998
++++ koules1.4/rcfiles.c	Sun Oct  5 10:04:09 2003
+@@ -61,7 +61,8 @@
+ #ifdef OS2DIVE
+   sprintf (fullname, "%s", name);
+ #else
+-  sprintf (fullname, "%s/%s", mygetenv ("HOME"), name);
++  if (getenv("HOME_ETC")) sprintf (fullname, "%s/%s", mygetenv ("HOME_ETC"), name);
++  else sprintf (fullname, "%s/%s", mygetenv ("HOME"), name);
+ #endif
+   if ((controls = fopen (fullname, "w")) == NULL)
+     {
+@@ -91,7 +92,9 @@
+ #ifdef OS2DIVE
+   sprintf (fullname, "%s", levelsname);
+ #else
+-  sprintf (fullname, "%s/%s", mygetenv ("HOME"), levelsname);
++  if (getenv("HOME_ETC"))
++	  sprintf (fullname, "%s/%s", mygetenv ("HOME_ETC"), levelsname);
++  else sprintf (fullname, "%s/%s", mygetenv ("HOME"), levelsname);
+ #endif
+   if ((levels = fopen (fullname, "w")) == NULL)
+     {
+@@ -122,7 +125,9 @@
+ #ifdef OS2DIVE
+   sprintf (fullname, "%s", name);
+ #else
+-  sprintf (fullname, "%s/%s", mygetenv ("HOME"), name);
++  if (getenv("HOME_ETC"))
++	  sprintf (fullname, "%s/%s", mygetenv ("HOME_ETC"), name);
++  else sprintf (fullname, "%s/%s", mygetenv ("HOME"), name);
+ #endif
+   if ((controls = fopen (fullname, "r")) == NULL)
+     {
+@@ -153,7 +158,9 @@
+ #ifdef OS2DIVE
+   sprintf (fullname, "%s", levelsname);
+ #else
+-  sprintf (fullname, "%s/%s", mygetenv ("HOME"), levelsname);
++  if (getenv("HOME_ETC"))
++    sprintf (fullname, "%s/%s", mygetenv ("HOME_ETC"), levelsname);
++  else sprintf (fullname, "%s/%s", mygetenv ("HOME"), levelsname);
+ #endif
+   if ((levels = fopen (fullname, "r")) == NULL)
+     {
