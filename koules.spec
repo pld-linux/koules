@@ -33,13 +33,13 @@ Group:		Games/Koules
 %endif
 
 %build
-make -f Makefile.svgalib
+%{__make} -f Makefile.svgalib
 xmkmf -a
-make -f Makefile clean
+%{__make} -f Makefile clean
 make
 
 %install
-make -f Makefile.svgalib install
+%{__make} -f Makefile.svgalib install
 install -c -s xkoules /usr/games/xkoules
 install -c xkoules.6 /usr/man/man6/xkoules.6
 install -c koules /usr/games/koules
