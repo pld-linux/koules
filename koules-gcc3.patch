@@ -1,0 +1,69 @@
+--- koules1.4.orig/xlib/inlstring.h	Wed Mar  4 19:59:19 1998
++++ koules1.4/xlib/inlstring.h	Sun Oct  5 08:44:08 2003
+@@ -238,13 +238,13 @@
+ static INLINE void *
+ __memcpy_aligndest (void *dest, const void *src, int n)
+ {
+-  __asm__         __volatile__ ("
+-				cmpl $3, %%ecx
+-				ja 1f
+-				call * __memcpy_jumptable (, %%ecx, 4)
+-				jmp 2f
+-				1:call __memcpyasm_regargs
+-				"
++  __asm__         __volatile__ (""
++				"cmpl $3, %%ecx\n"
++				"ja 1f\n"
++				"call * __memcpy_jumptable (, %%ecx, 4)\n"
++				"jmp 2f\n"
++				"1:call __memcpyasm_regargs\n"
++				""
+ 				:
+ 				:"b"            (dest), "d" (src), "c" (n)
+ 				:"ax", "0", "1", "2");
+@@ -255,14 +255,14 @@
+ static INLINE void *
+ __memcpy_destaligned (void *dest, const void *src, int n)
+ {
+-  __asm__         __volatile__ ("
+-				cmpl $32, %%ecx
+-				ja 1f
+-				call * __memcpy_jumptable (, %%ecx, 4)
+-				jmp 2f
+-				1:call __memcpyasm_regargs_aligned
+-				2:
+-				"
++  __asm__         __volatile__ (""
++				"cmpl $32, %%ecx\n"
++				"ja 1f\n"
++				"call * __memcpy_jumptable (, %%ecx, 4)\n"
++				"jmp 2f\n"
++				"1:call __memcpyasm_regargs_aligned\n"
++				"2:\n"
++				""				
+ 				:
+ 				:"b"            (dest), "d" (src), "c" (n)
+ 				:"ax", "0", "1", "2");
+@@ -273,14 +273,14 @@
+ static INLINE void *
+ __memcpy_balanced (void *dest, const void *src, int n)
+ {
+-  __asm__         __volatile__ ("
+-				cmpl $19, %%ecx
+-				ja 1f
+-				call * __memcpy_jumptable (, %%ecx, 4)
+-				jmp 2f
+-				1:call __memcpyasm_regargs
+-				2:
+-				"
++  __asm__         __volatile__ (""
++				"cmpl $19, %%ecx\n"
++				"ja 1f\n"
++				"call * __memcpy_jumptable (, %%ecx, 4)\n"
++				"jmp 2f\n"
++				"1:call __memcpyasm_regargs\n"
++				"2:\n"
++				""
+ 				:
+ 	     :"b"            ((long) dest), "d" ((long) src), "c" ((long) n)
+ 				:"ax", "bx", "cx", "dx");
