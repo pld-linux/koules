@@ -9,8 +9,8 @@ Group(de):	Applikationen/Spiele
 Group(pl):	Aplikacje/Gry
 Source0:	ftp://sunsite.unc.edu/pub/Linux/games/arcade/%{name}%{version}-src.tar.gz
 Source1:	%{name}.svga.6.pl
-Patch0:		%{name}1.4-i386.patch
-Patch1:		%{name}1.4-config.patch
+Patch0:		%{name}-i386.patch
+Patch1:		%{name}-config.patch
 BuildRequires:	svgalib-devel XFree86-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
