@@ -1,18 +1,32 @@
-%package svga
-Summary:	SVGAlib action game with multiplayer, network and sound support
-Summary(pl):	Gra pod SVGAlib dla wielu graczy
 Name:		koules
 Version:	1.4
 Release:	1
 License:	GPL
+Summary:	SVGAlib/X11 action game with multiplayer, network and sound support
+Summary(pl):	Gra pod SVGAlib i X11 dla wielu graczy
+Group:		Applications/Games
+Group(de):	Applikationen/Spiele
+Group(pl):	Aplikacje/Gry
+Source0:	ftp://sunsite.unc.edu/pub/Linux/games/arcade/%{name}%{version}-src.tar.gz
+Source1:	%{name}.svga.6.pl
+Patch0:		%{name}1.4-i386.patch
+Patch1:		%{name}1.4-config.patch
+BuildRequires:	svgalib-devel XFree86-devel
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%description
+SVGAlib/X11 action game with multiplayer, network and sound support.
+
+%description -l pl
+Gra pod SVGAlib i X11 ze wsparciem dla wielu graczy, sieci i d¼wiêku.
+
+%package svga
+Summary:	SVGAlib action game with multiplayer, network and sound support
+Summary(pl):	Gra pod SVGAlib dla wielu graczy
 Group:		Applications/Games
 Group(de):	Applikationen/Spiele
 Group(pl):	Aplikacje/Gry
 Icon:		koules.gif
-Source0:	ftp://sunsite.unc.edu/pub/Linux/games/arcade/%{name}%{version}-src.tar.gz
-Patch0:		%{name}1.4-i386.patch
-Patch1:		%{name}1.4-config.patch
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description svga
 SVGAlib action game with multiplayer, network and sound support.
@@ -65,10 +79,12 @@ xmkmf -a
 %install
 rm -rf $RPM_BUILD_ROOT
 %{__make} -f Makefile.svgalib install
-install -c xkoules $RPM_BUILD_ROOT%{_prefix}/games/xkoules
-install -c xkoules.6 $RPM_BUILD_ROOT%{_mandir}/man6/xkoules.6
-install -c koules $RPM_BUILD_ROOT%{_prefix}/games/koules
-install -c koules.tcl $RPM_BUILD_ROOT%{_prefix}/games/koules.tcl
+install -d $RPM_BUILD_ROOT%{_mandir}/pl/man6
+install xkoules $RPM_BUILD_ROOT%{_prefix}/games/xkoules
+install xkoules.6 $RPM_BUILD_ROOT%{_mandir}/man6/xkoules.6
+install koules $RPM_BUILD_ROOT%{_prefix}/games/koules
+install koules.tcl $RPM_BUILD_ROOT%{_prefix}/games/koules.tcl
+install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/pl/man6/koules.svga.6
 
 gzip -9nf ANNOUNCE BUGS COMPILE.OS2 Card ChangeLog INSTALLATION Koules.FAQ README TODO
 
@@ -82,6 +98,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_prefix}/games/koules
 %{_prefix}/games/koules.tcl
 %{_mandir}/man6/koules.svga.6
+%lang(pl) %{_mandir}/pl/man6/koules.svga.6
 
 %files x11
 %defattr(644,root,root,755)
