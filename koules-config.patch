@@ -23,9 +23,9 @@ diff -ur koules1.4.orig/Iconfig koules1.2beta1/Iconfig
 -KOULESDIR		=/usr/bin/X11
 -SOUNDDIR		=/usr/local/lib/koules
 -MANDIR			=/usr/local/man/man6
-+KOULESDIR		=/usr/games
-+SOUNDDIR		=/usr/lib/games/koules
-+MANDIR			=/usr/man/man6
++KOULESDIR		=$(KLIBDIR)
++SOUNDDIR		=$(KLIBDIR)/koules
++MANDIR			=/usr/share/man/man6
  
  /*You need some extra libraryes for BSD sockets compatibility?*/
  /* TOP_INCLUDES =                       /* Sun users with GCC need this */
@@ -48,9 +48,9 @@ diff -ur koules1.4.orig/Makefile.svgalib koules1.2beta1/Makefile.svgalib
 -SOUNDDIR = /usr/local/lib/koules
 -BINDIR = /usr/local/bin
 -MANDIR = /usr/local/man/man6
-+SOUNDDIR = /usr/lib/games/koules
-+BINDIR = /usr/games
-+MANDIR = /usr/man/man6
++SOUNDDIR = $(KLIBDIR)/koules
++BINDIR = /usr/bin
++MANDIR = /usr/share/man/man6
  
  SOUNDOBJS = sound.o
  SOUNDDEV = /dev/dsp
@@ -61,8 +61,8 @@ diff -ur koules1.4.orig/koules koules1.2beta1/koules
  #!/bin/sh
 -KOULESDIR=/usr/local/bin
 -XKOULESDIR=/usr/bin/X11
-+KOULESDIR=/usr/games
-+XKOULESDIR=/usr/games
++KOULESDIR=/usr/bin
++XKOULESDIR=/usr/bin
  if [ $TERM != console ]; then
  if [ $TERM != linux ]; then
  if [ $DISPLAY != "" ]; then
@@ -76,9 +76,9 @@ diff -ur koules1.4.orig/koules.tcl koules1.2beta1/koules.tcl
 -set xkoules "/usr/bin/X11/xkoules"
 -set koulessvga "/usr/local/bin/koules.svga"
 -set koulessound "/usr/local/lib/koules/creator1.raw"
-+set xkoules "/usr/games/xkoules"
-+set koulessvga "/usr/games/koules.svga"
-+set koulessound "/usr/lib/games/koules/creator1.raw"
++set xkoules "/usr/bin/xkoules"
++set koulessvga "/usr/bin/koules.svga"
++set koulessound "/usr/lib/koules/creator1.raw"
  set config "~/.xkoules.opt"
  set revision 1.1
  # Set default
