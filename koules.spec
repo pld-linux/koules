@@ -5,7 +5,9 @@ Version:	1.4
 Release:	2
 License:	GPL
 Group:		Applications/Games
-Source0:	ftp://sunsite.unc.edu/pub/Linux/games/arcade/%{name}/%{name}%{version}-src.tar.gz
+#Source0:	ftp://sunsite.unc.edu/pub/Linux/games/arcade/%{name}/%{name}%{version}-src.tar.gz
+Source0:	ftp://ftp.icm.edu.pl/mirrors/sunsite.unc.edu/pub/Linux/games/arcade/%{name}/%{name}%{version}-src.tar.gz
+# Source0-md5:	0a5ac9e57c8b72e9fc200bc98273235c
 Source1:	%{name}.svga.6.pl
 Patch0:		%{name}-i386.patch
 Patch1:		%{name}-config.patch
