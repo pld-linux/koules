@@ -36,7 +36,7 @@ Group:		Games/Koules
 %{__make} -f Makefile.svgalib
 xmkmf -a
 %{__make} -f Makefile clean
-make
+%{__make}
 
 %install
 %{__make} -f Makefile.svgalib install
