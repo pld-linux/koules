@@ -6,7 +6,7 @@ Version:	1.4
 Release:	1
 Icon:		koules.gif
 Copyright:	GPL
-Group:		Games/Koules
+Group:		Games
 Source:		sunsite.unc.edu:/pub/Linux/games/video/koules/koules1.4-src.tar.gz
 Patch0:		koules1.4-i386.patch
 Patch1:		koules1.4-config.patch
@@ -16,13 +16,13 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Icon:		xkoules.gif
 Description:	X action game with multiplayer, network and sound support
 Summary:	X action game with multiplayer, network and sound support
-Group:		Games/Koules
+Group:		X11/Games
 
 %package sound
 Icon:		sound.gif
 Description:	Sound files for koules/xkoules
 Summary:	Sound files for koules/xkoules
-Group:		Games/Koules
+Group:		Games
 
 %prep
 %setup -q -n koules1.4
