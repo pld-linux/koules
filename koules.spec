@@ -13,7 +13,7 @@ Patch2:		%{name}-asmfix.patch
 Patch3:		%{name}-optflags.patch
 Patch4:		%{name}-noman.patch
 BuildRequires:	XFree86-devel
-%ifarch %{ix86}
+%ifarch %{ix86} alpha
 BuildRequires:	svgalib-devel
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -76,7 +76,7 @@ Pliki d¼wiêkowe dla koules/xkoules.
 %patch4 -p1
 
 %build
-%ifarch %{ix86}
+%ifarch %{ix86} alpha
 %{__make} -f Makefile.svgalib OPTFLAGS="%{rpmcflags} %{!?debug:-fomit-frame-pointer}"
 %endif
 
@@ -88,7 +88,7 @@ xmkmf -a
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_mandir}{,/pl}/man6,%{_bindir},%{_xbindir},%{_libdir}/koules}
 
-%ifarch %{ix86}
+%ifarch %{ix86} alpha
 install koules.svga $RPM_BUILD_ROOT%{_bindir}
 install koules.svga.6 $RPM_BUILD_ROOT%{_mandir}/man6
 install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/pl/man6/koules.svga.6
@@ -100,12 +100,10 @@ install xkoules.6 $RPM_BUILD_ROOT%{_mandir}/man6/xkoules.6
 install koules $RPM_BUILD_ROOT%{_xbindir}/koules
 install koules.tcl $RPM_BUILD_ROOT%{_xbindir}/koules.tcl
 
-gzip -9nf ANNOUNCE BUGS Card ChangeLog Koules.FAQ README TODO
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%ifarch %{ix86}
+%ifarch %{ix86} alpha
 %files svga
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/koules.svga
@@ -116,7 +114,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files x11
 %defattr(644,root,root,755)
-%doc *.gz *.xpm
+%doc ANNOUNCE BUGS Card ChangeLog Koules.FAQ README TODO *.xpm
 %attr(755,root,root) %{_xbindir}/xkoules
 %attr(755,root,root) %{_xbindir}/koules.tcl
 %{_mandir}/man6/xkoules.6*
