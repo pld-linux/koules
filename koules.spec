@@ -1,36 +1,36 @@
 %package svga
-Description: SVGAlib action game with multiplayer, network and sound support
-Summary: SVGAlib action game with multiplayer, network and sound support
-Name: koules
-Version: 1.4
-Release: 1
-Icon: koules.gif
-Copyright: GPL
-Group: Games/Koules
-Source: sunsite.unc.edu:/pub/Linux/games/video/koules/koules1.4-src.tar.gz
-Patch0: koules1.4-i386.patch
-Patch1: koules1.4-config.patch
+Description:	SVGAlib action game with multiplayer, network and sound support
+Summary:	SVGAlib action game with multiplayer, network and sound support
+Name:		koules
+Version:	1.4
+Release:	1
+Icon:		koules.gif
+Copyright:	GPL
+Group:		Games/Koules
+Source:		sunsite.unc.edu:/pub/Linux/games/video/koules/koules1.4-src.tar.gz
+Patch0:		koules1.4-i386.patch
+Patch1:		koules1.4-config.patch
+BuildRoot:	/tmp/%{name}-%{version}-root
 
 %package x11
-Icon: xkoules.gif
-Description: X action game with multiplayer, network and sound support
-Summary: X action game with multiplayer, network and sound support
-Group: Games/Koules
+Icon:		xkoules.gif
+Description:	X action game with multiplayer, network and sound support
+Summary:	X action game with multiplayer, network and sound support
+Group:		Games/Koules
 
 %package sound
-Icon: sound.gif
-Description: Sound files for koules/xkoules
-Summary: Sound files for koules/xkoules
-Group: Games/Koules
+Icon:		sound.gif
+Description:	Sound files for koules/xkoules
+Summary:	Sound files for koules/xkoules
+Group:		Games/Koules
 
 %prep
-%setup -n koules1.4
+%setup -q -n koules1.4
 %ifarch i386
 %patch0 -p1
 %else
 %patch1 -p1
 %endif
-
 
 %build
 make -f Makefile.svgalib
