@@ -10,7 +10,7 @@ Group:		Games/Koules
 Source:		sunsite.unc.edu:/pub/Linux/games/video/koules/koules1.4-src.tar.gz
 Patch0:		koules1.4-i386.patch
 Patch1:		koules1.4-config.patch
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %package x11
 Icon:		xkoules.gif
