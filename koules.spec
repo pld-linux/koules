@@ -2,7 +2,7 @@ Summary:	SVGAlib/X11 action game with multiplayer, network and sound support
 Summary(pl):	Gra pod SVGAlib i X11 dla wielu graczy
 Name:		koules
 Version:	1.4
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Games
 Source0:	ftp://sunsite.unc.edu/pub/Linux/games/arcade/%{name}/%{name}%{version}-src.tar.gz
