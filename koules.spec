@@ -20,6 +20,7 @@ Patch3:		%{name}-noman.patch
 Patch4:		%{name}-gcc3.patch
 Patch5:		%{name}-home_etc.patch
 BuildRequires:	XFree86-devel
+BuildRequires:	perl-base
 %{?with_svga:BuildRequires:	svgalib-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
