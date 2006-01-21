@@ -34,7 +34,6 @@ Gra pod SVGAlib i X11 ze wsparciem dla wielu graczy, sieci i d德i瘯u.
 Summary:	SVGAlib action game with multiplayer, network and sound support
 Summary(pl):	Gra pod SVGAlib dla wielu graczy
 Group:		Applications/Games
-Icon:		koules.gif
 
 %description svga
 SVGAlib action game with multiplayer, network and sound support.
@@ -46,7 +45,6 @@ Gra pod SVGAlib ze wsparciem dla wielu graczy, sieci i d德i瘯u.
 Summary:	X action game with multiplayer, network and sound support
 Summary(pl):	Gra pod X dla wielu graczy
 Group:		X11/Applications/Games
-Icon:		xkoules.gif
 
 %description x11
 X action game with multiplayer, network and sound support
@@ -58,7 +56,6 @@ Gra pod X ze wsparciem dla wielu graczy, sieci i d德i瘯u.
 Summary:	Sound files for koules/xkoules
 Summary(pl):	Pliki d德i瘯owe dla koules/xkoules
 Group:		Applications/Games
-Icon:		sound.gif
 
 %description sound
 Sound files for koules/xkoules.
