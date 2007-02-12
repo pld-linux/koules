@@ -3,7 +3,7 @@
 %bcond_without	svga	# without SVGAlib version
 #
 Summary:	SVGAlib/X11 action game with multiplayer, network and sound support
-Summary(pl):	Gra pod SVGAlib i X11 dla wielu graczy
+Summary(pl.UTF-8):   Gra pod SVGAlib i X11 dla wielu graczy
 Name:		koules
 Version:	1.4
 Release:	4
@@ -27,41 +27,41 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 SVGAlib/X11 action game with multiplayer, network and sound support.
 
-%description -l pl
-Gra pod SVGAlib i X11 ze wsparciem dla wielu graczy, sieci i d¼wiêku.
+%description -l pl.UTF-8
+Gra pod SVGAlib i X11 ze wsparciem dla wielu graczy, sieci i dÅºwiÄ™ku.
 
 %package svga
 Summary:	SVGAlib action game with multiplayer, network and sound support
-Summary(pl):	Gra pod SVGAlib dla wielu graczy
+Summary(pl.UTF-8):   Gra pod SVGAlib dla wielu graczy
 Group:		Applications/Games
 
 %description svga
 SVGAlib action game with multiplayer, network and sound support.
 
-%description svga -l pl
-Gra pod SVGAlib ze wsparciem dla wielu graczy, sieci i d¼wiêku.
+%description svga -l pl.UTF-8
+Gra pod SVGAlib ze wsparciem dla wielu graczy, sieci i dÅºwiÄ™ku.
 
 %package x11
 Summary:	X action game with multiplayer, network and sound support
-Summary(pl):	Gra pod X dla wielu graczy
+Summary(pl.UTF-8):   Gra pod X dla wielu graczy
 Group:		X11/Applications/Games
 
 %description x11
 X action game with multiplayer, network and sound support
 
-%description x11 -l pl
-Gra pod X ze wsparciem dla wielu graczy, sieci i d¼wiêku.
+%description x11 -l pl.UTF-8
+Gra pod X ze wsparciem dla wielu graczy, sieci i dÅºwiÄ™ku.
 
 %package sound
 Summary:	Sound files for koules/xkoules
-Summary(pl):	Pliki d¼wiêkowe dla koules/xkoules
+Summary(pl.UTF-8):   Pliki dÅºwiÄ™kowe dla koules/xkoules
 Group:		Applications/Games
 
 %description sound
 Sound files for koules/xkoules.
 
-%description sound -l pl
-Pliki d¼wiêkowe dla koules/xkoules.
+%description sound -l pl.UTF-8
+Pliki dÅºwiÄ™kowe dla koules/xkoules.
 
 %prep
 %setup -q -n %{name}%{version}
