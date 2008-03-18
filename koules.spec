@@ -19,8 +19,12 @@ Patch2:		%{name}-optflags.patch
 Patch3:		%{name}-noman.patch
 Patch4:		%{name}-gcc3.patch
 Patch5:		%{name}-home_etc.patch
-BuildRequires:	XFree86-devel
+Patch6:		%{name}-asm_io.patch
 BuildRequires:	perl-base
+BuildRequires:	xorg-cf-files
+BuildRequires:	xorg-lib-libXext-devel
+BuildRequires:	xorg-util-gccmakedep
+BuildRequires:	xorg-util-imake
 %{?with_svga:BuildRequires:	svgalib-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -71,6 +75,7 @@ Pliki dźwiękowe dla koules/xkoules.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
 
 %ifarch %{ix86}
 %{__perl} -pi -e 's/^.*I386ASSEMBLY.*$/#define I386ASSEMBLY/' Iconfig
