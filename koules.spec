@@ -21,11 +21,11 @@ Patch4:		%{name}-gcc3.patch
 Patch5:		%{name}-home_etc.patch
 Patch6:		%{name}-asm_io.patch
 BuildRequires:	perl-base
+%{?with_svga:BuildRequires:	svgalib-devel}
 BuildRequires:	xorg-cf-files
 BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-util-gccmakedep
 BuildRequires:	xorg-util-imake
-%{?with_svga:BuildRequires:	svgalib-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -91,7 +91,7 @@ Pliki dźwiękowe dla koules/xkoules.
 
 xmkmf -a
 %{__make} -f Makefile clean
-%{__make} \
+%{__make} -j1 \
 	CDEBUGFLAGS="%{rpmcflags} %{!?debug:-fomit-frame-pointer}" \
 	KLIBDIR="%{_libdir}"
 
